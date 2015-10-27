@@ -1,0 +1,2 @@
+1. Learning Google’s V8 Engine                                                  - https://jimmyroland.wordpress.com/2013/09/30/learning-googles-v8-engine/
+2. MASTERING NODE: ADDONS AND FUNCTIONTEMPLATE (UUID.NODE)                      - http://www.ipreferjim.com/2012/02/mastering-node-addons-and-functiontemplate-uuid-node/
