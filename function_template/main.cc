@@ -40,11 +40,37 @@ void SetTemplateWithPrototype(v8::Local<v8::Object>& exports)
     exports->Set(Nan::New("prototypeTemplate").ToLocalChecked(), tmpl->GetFunction());
 }
 
+
+void Method(const Nan::FunctionCallbackInfo<v8::Value>& info) 
+{
+    info.GetReturnValue().Set(Nan::New("world").ToLocalChecked());
+}
+/*
+ var template = function() { 
+    this.instance_const = "instance_const";
+    this.instance_method = function() { return "world"; }
+ }
+ */
+void SetTemplateWithInstanceProperty(v8::Local<v8::Object>& exports)
+{
+    //var template = function() {}
+    v8::Local<v8::FunctionTemplate> tmpl = Nan::New<v8::FunctionTemplate>(); 
+
+    //this.instance_const = "instance_const";
+    Nan::SetInstanceTemplate(tmpl, "instance_const", Nan::New("instance_const").ToLocalChecked());
+
+    //this.instance_method = function() {}
+    Nan::SetInstanceTemplate(tmpl, "instance_method", Nan::New<v8::FunctionTemplate>(Method));
+
+    exports->Set(Nan::New("instanceTemplate").ToLocalChecked(), tmpl->GetFunction());
+}
+
 void Init(v8::Local<v8::Object> exports)
 {
     SetEmptyTemplate(exports);
     SetTemplateWithProperty(exports);
     SetTemplateWithPrototype(exports);
+    SetTemplateWithInstanceProperty(exports);
 }
 
 NODE_MODULE(fTemplate, Init)
