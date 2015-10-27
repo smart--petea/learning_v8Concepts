@@ -50,6 +50,10 @@ void Method(const Nan::FunctionCallbackInfo<v8::Value>& info)
     this.instance_const = "instance_const";
     this.instance_method = function() { return "world"; }
  }
+
+ var tempObj = new template;
+ console.log(tempObj.instance_const); // instance_const
+ console.log(tempObj.instance_method()); // world
  */
 void SetTemplateWithInstanceProperty(v8::Local<v8::Object>& exports)
 {
